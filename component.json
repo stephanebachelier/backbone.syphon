@@ -1,0 +1,23 @@
+{
+  "name"        : "backbone.syphon",
+  "description" : "Serialize a Backbone.View in to a JavaScript object !",
+  "url"         : "https://github.com/derickbailey/backbone.syphon",
+  "main"        : "./lib/backbone.syphon.js",
+  "version"     : "0.4.1",
+
+  "keywords"     : [
+    "backbone",
+    "serialize",
+    "client",
+    "browser"
+  ],
+  "author"       : {
+    "name"  : "Derick Bailey",
+    "email" : "derickbailey@gmail.com"
+  }
+  "dependencies" : {
+    "jquery": "latest",
+    "backbone" : "latest",
+    "underscore": "lateset"
+  }
+}
