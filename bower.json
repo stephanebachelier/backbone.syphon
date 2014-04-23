@@ -19,5 +19,14 @@
     "jquery": "latest",
     "backbone" : "latest",
     "underscore": "lateset"
-  }
+  },
+  "ignore": [
+    "Gemfile",
+    "Gemfile.lock",
+    "Rakefile",
+    "grunt.js",
+    "public",
+    "src",
+    "spec"
+  ]
 }
