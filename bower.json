@@ -14,7 +14,7 @@
   "author": {
     "name"  : "Derick Bailey",
     "email" : "derickbailey@gmail.com"
-  }
+  },
   "dependencies": {
     "jquery": "latest",
     "backbone" : "latest",
