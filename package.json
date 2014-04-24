@@ -1,8 +1,13 @@
 {
   "name": "Backbone.syphon",
   "version": "0.4.1",
-  "dependencies": {
-    "grunt": "*",
-    "grunt-rigger": "*"
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-preprocess": "^4.0.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "load-grunt-tasks": "^0.4.0"
   }
 }
