@@ -487,19 +487,19 @@ overriden by replacing the Input Reader for checkboxes.
 ## Building Backbone.Syphon
 
 If you wish to build Backbone.Syphon on your system, you will
-need Ruby to run the Jasmine specs, and NodeJS to run the
-grunt build. 
+need NodeJS to run the grunt build and the Jasmine specs. 
 
 ### To Run The Jasmine Specs
 
-1. Be sure you have Bundler installed in your Ruby Gems. Then
-run `bundle install` from the project folder
+1. Be sure you have NodeJS and NPM installed on your system
 
-2. Once this is done, you can run `rake jasmine` to run the 
-Jasmine server
+2. Run `npm install -g grunt` to install the grunt build system
 
-3. Point your browser at `http://localhost:8888` and you will
-see all of the specs for Backbone.Syphon
+3. From the project folder, run `grunt test` to run the Jasmine specs 
+using PhantomJS. It will start a server on localhost using the port defined in connect config (`8888` by default).
+
+4. (Optionally) Point your browser at `http://localhost:8888` and you will
+see all of the specs for Backbone.Syphon running in your browser.
 
 ### To Build The Packages
 

@@ -44,10 +44,40 @@ module.exports = function(grunt) {
         src: ['lib/amd/backbone.syphon.js'],
         dest: 'lib/amd/backbone.syphon.min.js'
       }
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 8888,
+          keepalive: true
+        }
+      }
+    },
+
+    jasmine: {
+      options: {
+        helpers: ['spec/javascripts/helpers/*.js'],
+        specs: ['spec/javascripts/*.spec.js'],
+        vendor: [
+          'bower_components/jquery/dist/jquery.js',
+          'bower_components/underscore/underscore.js',
+          'bower_components/backbone/backbone.js',
+        ],
+        keepRunner: true
+      },
+      syphon: {
+        src: [
+          'src/backbone.syphon.js',
+          'src/backbone.syphon.typeregistry.js',
+          'src/backbone.syphon.*.js',
+        ]
+      }
     }
   });
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'rig', 'uglify']);
+  grunt.registerTask('test', ['jshint', 'jasmine', 'connect:server:keepalive']);
 
 };

@@ -1,11 +1,13 @@
 {
   "name": "Backbone.syphon",
   "version": "0.4.1",
-  "dependencies": {
+  "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-rigger": "*",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.4.0",
-    "load-grunt-tasks": "^0.4.0"
+    "load-grunt-tasks": "^0.4.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-jasmine": "^0.5.2"
   }
 }
