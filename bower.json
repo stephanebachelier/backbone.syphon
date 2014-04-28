@@ -24,7 +24,7 @@
     "Gemfile",
     "Gemfile.lock",
     "Rakefile",
-    "grunt.js",
+    "Gruntfile.js",
     "public",
     "src",
     "spec"
