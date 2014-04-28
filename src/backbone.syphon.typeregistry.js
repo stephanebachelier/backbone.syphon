@@ -44,5 +44,3 @@ _.extend(Backbone.Syphon.TypeRegistry.prototype, {
     }
   }
 });
-
-
