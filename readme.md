@@ -166,6 +166,13 @@ Backbone.Syphon.serialize(view);
 }
 ```
 
+Serializing a form with no radio button checked will be serialized to :
+```js
+{
+  a: null
+}
+```
+
 This behavior can be changed by registering a different set of Key Extractors, Input Readers, and Key Assignment
 Validators. See the full
 [API Documentation](https://github.com/marionettejs/backbone.syphon/blob/master/apidoc.md).
