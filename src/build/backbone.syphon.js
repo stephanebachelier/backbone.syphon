@@ -35,6 +35,7 @@
   // @include ../backbone.syphon.keyassignmentvalidators.js
   // @include ../backbone.syphon.keysplitter.js
   // @include ../backbone.syphon.keyjoiner.js
+  // @include ../backbone.syphon.valueassigners.js
 
   return Backbone.Syphon;
 }));

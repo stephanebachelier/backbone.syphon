@@ -1,4 +1,4 @@
-/* jshint maxstatements: 13, maxlen: 102, maxcomplexity: 8, latedef: false */
+/* jshint maxstatements: 13, maxlen: 102, maxcomplexity: 9, latedef: false */
 
 // Ignore Element Types
 // --------------------
@@ -41,7 +41,8 @@ Syphon.serialize = function(view, options) {
     var validKeyAssignment = config.keyAssignmentValidators.get(type);
     if (validKeyAssignment($el, key, value)) {
       var keychain = config.keySplitter(key);
-      data = assignKeyValue(data, keychain, value);
+      var valueAssigner = config.valueAssigners.get(type);
+      data = assignKeyValue(data, keychain, valueAssigner(value));
     }
   });
 
@@ -165,6 +166,7 @@ var buildConfig = function(options) {
   config.keySplitter = config.keySplitter || Syphon.KeySplitter;
   config.keyJoiner = config.keyJoiner || Syphon.KeyJoiner;
   config.keyAssignmentValidators = config.keyAssignmentValidators || Syphon.KeyAssignmentValidators;
+  config.valueAssigners =  config.valueAssigners || Syphon.ValueAssigners;
 
   return config;
 };
@@ -190,7 +192,7 @@ var buildConfig = function(options) {
 // becomes an array, and values are pushed in to the array,
 // allowing multiple fields with the same name to be
 // assigned to the array.
-var assignKeyValue = function(obj, keychain, value) {
+var assignKeyValue = function(obj, keychain, valueAssignerFn) {
   if (!keychain) { return obj; }
 
   var key = keychain.shift();
@@ -202,16 +204,12 @@ var assignKeyValue = function(obj, keychain, value) {
 
   // if it's the last key in the chain, assign the value directly
   if (keychain.length === 0) {
-    if (_.isArray(obj[key])) {
-      obj[key].push(value);
-    } else {
-      obj[key] = value;
-    }
+    valueAssignerFn(obj, key);
   }
 
   // recursive parsing of the array, depth-first
   if (keychain.length > 0) {
-    assignKeyValue(obj[key], keychain, value);
+    assignKeyValue(obj[key], keychain, valueAssignerFn);
   }
 
   return obj;
