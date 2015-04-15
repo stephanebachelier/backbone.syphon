@@ -19,5 +19,12 @@ KeyAssignmentValidators.registerDefault(function() {
 // But only the "checked" radio button for a given
 // radio button group is valid
 KeyAssignmentValidators.register('radio', function($el, key, value) {
-  return $el.prop('checked');
+  if ($el.prop('checked')) {
+    return true;
+  }
+
+  // in case radio button is not checked return true if a value different than undefined
+  // as been set.
+  // This behavior is useful to set a default value for a radio group
+  return value !== undefined;
 });

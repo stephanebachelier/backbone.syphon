@@ -167,6 +167,15 @@ You can register your own input readers, allowing you
 to change how the data is read. To do this register
 a callback function to an input type.
 
+The default input reader for radio button is returning the value if button is checked or `null`.
+```js
+Backbone.Syphon.InputReaders.register('radio', function($el) {
+  return $el.prop('checked') ? $el.val() : null;
+});
+```
+
+You can override the default behavior to return the value of the radio button independently of its status.
+
 ```js
 Backbone.Syphon.InputReaders.register('radio', function(el){
   return el.val();
@@ -264,8 +273,9 @@ extracted from the element. This is the last opportunity to prevent
 bad data from getting serialized to your object.
 
 The most common use of this is to ensure radio button groups are only
-serialized by the one radio button that is selected, within the group. This
-behavior is built in by default (see below).
+serialized by the one radio button that is selected, within the group,
+defaulting to `null` value if no button is selected. This behavior is
+built in by default (see below).
 
 ### Assigning Your Own Validator
 
@@ -295,6 +305,16 @@ return a boolean (or truthy) value from the callback.
 Return values of `true` or truthy will be valid and the assignment will occur. Return values
 that are `false` or falsey will not be valid and the assignment will not occur.
 
+### Overriding radio group output
+
+Default will serialize a null value for a radio group if no button is selected. If you want a different behavior like no output if no radio button selected, you should override radio key assignment validator, like this:
+
+```js
+Backbone.Syphon.KeyAssignmentValidators.register("radio", function($el, key, value){
+  return $el.prop('checked');
+});
+```
+
 ### Assign A Key Assignment Validation Set
 
 You can assign your own Key Validation Set by creating an instance of
@@ -315,7 +335,7 @@ just register and remove validations as needed.
 There are two Key Assignment Validators built in to Syphon:
 
 * default: everything is valid
-* radio: only radio buttons that are selected are valid
+* radio: only radio buttons that are selected are valid, or if a value different than `undefined` is returned by input reader. This should work for most cases, with radio button groups set to a `null` in case no buttons are selected.
 
 ## Handling Non-"input" Elements
 

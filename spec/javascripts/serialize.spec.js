@@ -250,7 +250,7 @@ describe('serializing a form', function() {
           this.$el.html(
               '<form>' +
               '<input type="radio" name="foo" value="foo">' +
-              '<input type="radio" name="foo" value="bar" checked>' +
+              '<input type="radio" name="foo" value="bar">' +
               '<input type="radio" name="foo" value="baz">' +
               '</form>'
           );
@@ -260,11 +260,17 @@ describe('serializing a form', function() {
       this.view = new this.View();
       this.view.render();
 
-      this.result = Backbone.Syphon.serialize(this.view);
+    });
+
+    it('should return the value null when no selected radio button', function() {
+      var result = Backbone.Syphon.serialize(this.view);
+      expect(result.foo).to.equal(null);
     });
 
     it('should only return the value of the selected radio button', function() {
-      expect(this.result.foo).to.equal('bar');
+      this.view.$('[value=bar]').click();
+      var result = Backbone.Syphon.serialize(this.view);
+      expect(result.foo).to.equal('bar');
     });
   });
 

@@ -19,3 +19,8 @@ InputReaders.registerDefault(function($el) {
 InputReaders.register('checkbox', function($el) {
   return ($el.prop('indeterminate')) ? null : $el.prop('checked');
 });
+
+// Radio reader, returning the value if radio button is checked or null
+InputReaders.register('radio', function($el) {
+  return $el.prop('checked') ? $el.val() : null;
+});
